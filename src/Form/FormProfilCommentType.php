@@ -37,7 +37,7 @@ class FormProfilCommentType extends AbstractType
                 ]
             ])
             //form_profil_comment_comment_id
-            ->add('comment_id', HiddenType::class, [
+            ->add('parent_id', HiddenType::class, [
                 'mapped' => false
             ])
 

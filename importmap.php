@@ -12,6 +12,17 @@
  * The "importmap:require" command can be used to add new entries to this file.
  */
 return [
+
+    '@hotwired/stimulus' => [
+        'version' => '3.2.2',
+    ],
+    '@symfony/stimulus-bundle' => [
+        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
+    ],
+    
+    '@hotwired/turbo' => [
+        'version' => '8.0.12',
+    ],
     'app' => [
         'path' => './assets/app.js',
         'entrypoint' => true,
@@ -23,14 +34,5 @@ return [
     'add-response-comment' => [
         'path' => './assets/js/addResponseComment.js',
         'entrypoint' => true,
-    ],
-    '@hotwired/stimulus' => [
-        'version' => '3.2.2',
-    ],
-    '@symfony/stimulus-bundle' => [
-        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
-    ],
-    '@hotwired/turbo' => [
-        'version' => '8.0.12',
     ],
 ];
