@@ -1,0 +1,51 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}blognote
+{% endblock %}
+
+{% block body %}
+
+	<div class="list-group">
+		<a href="#" class="list-group-item list-group-item-action active">
+			<h4>Les informations de l'utilisateur</h4>
+		</a>
+
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Avatar
+			<span class="badge ">
+				<img src="{{ vich_uploader_asset(user, 'imageFile') }}" alt="{{ user.imageName }}" width="50px"/></span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Le pseudo
+			<span class="badge bg-primary rounded-pill">{{ user.username }}</span>
+		</li>
+
+
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			L'email
+			<span class="badge bg-primary rounded-pill">{{ user.email }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Est-il actif
+			<span class="badge bg-primary rounded-pill">oui</span>
+		</li>
+	</div>
+
+
+	<ul class="list-group mt-2">
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Nombres d'astuces
+			<span class="badge bg-primary rounded-pill">{{ user.getTricks|length  }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Nombre de commentaires
+			<span class="badge bg-primary rounded-pill">{{ user.getComments|length  }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Nombre de notations
+			<span class="badge bg-primary rounded-pill">{{ user.getRatings|length  }}</span>
+		</li>
+	</ul>
+
+{% endblock %}

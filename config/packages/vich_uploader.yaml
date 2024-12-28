@@ -1,0 +1,31 @@
+vich_uploader:
+    db_driver: orm
+
+    metadata:
+        type: attribute
+        
+
+    mappings:
+        users_images:
+            uri_prefix: /images/users
+            upload_destination: '%kernel.project_dir%/public/images/users'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+
+
+            inject_on_load: false  # par défaut false, le fichier doit être injecté dans l'entité téléchargeable lorsqu'il est chargé à partir du magasin
+            delete_on_update: true # par défaut true, le fichier doit-il être supprimé lorsqu'un nouveau fichier est téléchargé ;
+            delete_on_remove: true # par défaut true, le fichier doit-il être supprimé lorsque l'entité est supprimée ;
+#
+
+
+        tricks_images:
+            uri_prefix: /images/tricks
+            upload_destination: '%kernel.project_dir%/public/images/tricks'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+
+
+            inject_on_load: false  # par défaut false, le fichier doit être injecté dans l'entité téléchargeable lorsqu'il est chargé à partir du magasin
+            delete_on_update: true # par défaut true, le fichier doit-il être supprimé lorsqu'un nouveau fichier est téléchargé ;
+            delete_on_remove: true # par défaut true, le fichier doit-il être supprimé lorsque l'entité est supprimée ;

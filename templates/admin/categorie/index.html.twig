@@ -1,0 +1,57 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}blognote
+{% endblock %}
+
+{% block body %}
+
+
+{#{% if is_actif == true %} #}
+
+
+<button class='btn btn-primary mb-4'>
+	<a class="dropdown-item" href="{{ path('app_admin_categorie_add') }}">Créer une catégorie</a>
+</button>
+
+{% if categories is not empty  %}
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-success">
+				<th scope="col">voir</th>
+				<th scope="col">nom de la catégorie</th>
+				<th scope="col">parent</th>
+				<th scope="col">le nombre d'astuces</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+
+
+		<tbody>
+
+			{% for categorie in categories %}
+				<tr class="table-dark">
+					<th scope="row">
+
+						<a href="{{ path('app_admin_categorie_show',{id: categorie.id}) }}">{{ ux_icon('mingcute:eye-line', {height:'20px', width:'20px'}) }}</a>
+
+					</th>
+					<td>{{ categorie.name }}</td>
+					<td>{{ categorie.parent ? categorie.parent : 'pas de parent'  }}</td>
+					<td>
+						{{ categorie.getTricks|length  }}
+					</td>
+					<td>
+
+
+						<a onclick="return confirm('Etes vous sûre de vouloir supprimer cette catégorie)" href="{{ path('app_admin_categorie_delete',{id: categorie.id}) }}">{{ ux_icon('mingcute:delete-line',{height:'20px', width:'20px'}) }}</a>
+
+
+						<a href="{{ path('app_admin_categorie_edit',{id: categorie.id}) }}">{{ ux_icon('mingcute:edit-line', {height:'20px', width:'20px'}) }}</a>
+
+					</td>
+				</tr>
+			</ul>
+		</tbody>
+	</td>
+</tr>{% endfor %}</tbody></table>{% else %}<div class="alert alert-dismissible alert-danger"><button type="button" class="btn-close" data-bs-dismiss="alert"></button><strong>Oups!!</strong>Il y'a plus de catégories</div></h5>{% endif %}{#	{% endif %} #}{% endblock %}

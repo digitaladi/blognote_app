@@ -1,0 +1,46 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie :
+	{{ categorie.name }}
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="list-group">
+		<a href="#" class="list-group-item list-group-item-action active">
+			<h4>Informations sur la catégorie</h4>
+		</a>
+
+
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Nom
+			<span class="badge bg-primary rounded-pill">{{ categorie.name }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Slug
+			<span class="badge bg-primary rounded-pill">{{ categorie.slug }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Parent
+			<span class="badge bg-primary rounded-pill">{{ categorie.parent ?  categorie.parent : "pas de parent"}}</span>
+		</li>
+
+
+	</div>
+
+
+	<ul class="list-group mt-2">
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Nombres d'astuces
+			<span class="badge bg-primary rounded-pill">{{ categorie.getTricks|length  }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Nombre de categories
+			<span class="badge bg-primary rounded-pill">{{ categorie.getCategories|length  }}</span>
+		</li>
+
+	</ul>
+
+{% endblock %}

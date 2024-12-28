@@ -1,0 +1,58 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}blognote
+{% endblock %}
+
+{% block body %}
+
+
+{#{% if is_actif == true %} #}
+
+
+<h1 class="mt-4 fw-light">Gestion des utilisateurs</h1>
+
+{% if users is not empty  %}
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-dark">
+				<th scope="col">voir</th>
+				<th scope="col">Le pseudo</th>
+				<th scope="col">email</th>
+				<th scope="col">Date</th>
+				<th scope="col">Nombre d' astuces
+				</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+
+
+		<tbody>
+
+			{% for user in users %}
+				<tr class="table-dark">
+					<th
+						scope="row">
+						{#{{  dump(user.getTricks) }}#}
+						<a href="{{ path('app_admin_user_show',{id: user.id}) }}">{{ ux_icon('mingcute:eye-line', {height:'20px', width:'20px'}) }}</a>
+
+					</th>
+					<td>{{ user.username }}</td>
+					<td>{{ user.email }}</td>
+					<td>date
+					</td>
+					{# récuperer nombre de collection d'entités #}
+					<td>{{ user.getTricks|length  }}</td>
+					<td>
+
+
+						<a onclick="return confirm('Etes vous sûre de vouloir supprimer cet utilisateur')" href="{{ path('app_admin_user_delete',{id: user.id}) }}">{{ ux_icon('mingcute:delete-line',{height:'20px', width:'20px'}) }}</a>
+
+
+						<a href="{{ path('app_admin_user_edit',{id: user.id}) }}">{{ ux_icon('mingcute:edit-line', {height:'20px', width:'20px'}) }}</a>
+					</td>
+				</tr>
+			</td>
+		</tbody>
+	</tr>
+</ul></tbody></td></tr>{% endfor %}</tbody></table>{% else %}<h5><div class="alert alert-dismissible alert-danger"><button type="button" class="btn-close" data-bs-dismiss="alert"></button><strong>Oups!!!</strong>Il y'a plus d'utilisateurs</div></h5>{% endif %}{#	{% endif %} #}{% endblock %}

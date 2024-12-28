@@ -1,0 +1,55 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Mots clés
+{% endblock %}
+
+{% block body %}
+
+
+{#{% if is_actif == true %} #}
+
+
+<button class='btn btn-primary mb-4'>
+	<a class="dropdown-item" href="{{ path('app_admin_keyword_add') }}">Créer un mot clé</a>
+</button>
+
+{% if keywords is not empty  %}
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-warning">
+				<th scope="col">voir</th>
+				<th scope="col">Nom du mot clé</th>
+				<th scope="col">Slug du mot clé</th>
+				<th scope="col">Actions</th>
+
+			</tr>
+		</thead>
+
+
+		<tbody>
+
+			{% for keyword in keywords %}
+				<tr class="table-dark">
+					<th scope="row">
+
+						<a href="{{ path('app_admin_keyword_show',{id: keyword.id}) }}">{{ ux_icon('mingcute:eye-line', {height:'20px', width:'20px'}) }}</a>
+
+					</th>
+
+					<td>{{ keyword.name }}</td>
+					<td>{{ keyword.slug }}</td>
+					<td>
+
+
+						<a onclick="return confirm('Etes vous sûre de vouloir supprimer ce mot de clé')" href="{{ path('app_admin_keyword_delete',{id: keyword.id}) }}">{{ ux_icon('mingcute:delete-line',{height:'20px', width:'20px'}) }}</a>
+
+
+						<a href="{{ path('app_admin_keyword_edit',{id: keyword.id}) }}">{{ ux_icon('mingcute:edit-line', {height:'20px', width:'20px'}) }}</a>
+
+					</td>
+				</tr>
+			</ul>
+		</tbody>
+	</td>
+</tr>{% endfor %}</tbody></table>{% else %}<h5><div class="alert alert-dismissible alert-danger"><button type="button" class="btn-close" data-bs-dismiss="alert"></button><strong>Oups!!</strong>Il y'a plus de mot clés</div></h5>{% endif %}{#	{% endif %} #}{% endblock %}

@@ -1,0 +1,17 @@
+twig:
+    file_name_pattern: '*.twig'
+
+    #permet d'afficher des variables qui seront accessibles partout dans nos pages twig
+    #Pour définir un service en tant que variable Twig globale
+    globals:
+        Note_du_site:  'Blognote'
+        #utiliser service SpecificFunctionDate dans pages twig
+        date_ago: '@App\Service\SpecificFunctionDate'
+
+when@test:
+    twig:
+        strict_variables: true
+        
+
+
+            

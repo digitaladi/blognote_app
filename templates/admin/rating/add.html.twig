@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une notation
+{% endblock %}
+
+{% block body %}
+
+
+	<h1 class="mt-4">Ajouter une notation</h1>
+
+	{{ form_start(ratingForm) }}
+
+
+	<div class="form-group">
+		{{ form_label(ratingForm.note) }}
+		{{ form_widget(ratingForm.note) }}
+
+		<div class="form-error">
+			{{ form_errors(ratingForm.note) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(ratingForm.trick) }}
+		{{ form_widget(ratingForm.trick) }}
+
+		<div class="form-error">
+			{{ form_errors(ratingForm.trick) }}
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{{ form_label(ratingForm.user) }}
+		{{ form_widget(ratingForm.user) }}
+
+		<div class="form-error">
+			{{ form_errors(ratingForm.user) }}
+		</div>
+	</div>
+
+	{{ form_end(ratingForm) }}
+
+
+{% endblock %}

@@ -1,0 +1,291 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil blognote
+{% endblock %}
+
+{% block body %}
+
+	{#	<h1 class="text-center fw-light">Profiter et partager des astuces</h1>#}
+	{#	<h1 class="text-center fw-light">Contribuer à l'excellence</h1>#}
+	{#{% if is_actif == true %} #}
+
+
+	<!-- Tabs navs --><p>
+
+	</p>
+
+		<div class="container mt-4 mb-4"> <div class="row d-flex justify-content-center">
+			<div class="col-md-9">
+				<div class="card p-3 pb-4">
+					<h3 class="heading text-center">Do you want to solve your problem  ?</h3>
+					<div class="d-flex justify-content-center px-5">
+						<div class="search">
+							<input type="text" class="search-input" placeholder="Search..." name="">
+							<a href="#" class="search-icon">
+								<i class="fa fa-search"></i>
+							</a>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	{#
+																																																																																																													<ul class="nav nav-pills nav-justified mt-4 p-2 border rounded-5">
+																																																																																																														<li class="nav-item text-color-blognote">
+																																																																																																															{{ ux_icon('icon-park-outline:sport', {height:'30px', width:'30px'}) }}
+																																																																																																															<a class="nav-link" aria-current="page" href="#">Sport</a>
+																																																																																																														</li>
+																																																																																																														<li class="nav-item text-color-blognote">
+																																																																																																															{{ ux_icon('lucide:computer', {height:'30px', width:'30px'}) }}
+																																																																																																															<a class="nav-link" href="#">Informatique</a>
+																																																																																																														</li>
+																																																																																																														<li class="nav-item text-color-blognote">
+																																																																																																															{{ ux_icon('mage:health-square',{height:'30px', width:'30px'}) }}
+																																																																																																															<a class="nav-link" href="#">Santé</a>
+																																																																																																														</li>
+																																																																																																														<li class="nav-item text-color-blognote">
+																																																																																																															{{ ux_icon('game-icons:auto-repair',{height:'30px', width:'30px'}) }}
+																																																																																																															<a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Bricolage</a>
+																																																																																																														</li>
+																																																																																																													</ul>
+																																																																																																												
+																																																																																																												
+																																																																																																													<div class="mt-1">
+																																																																																																														<a href="#">
+																																																																																																															réinitialiser
+																																																																																																															{{ ux_icon('system-uicons:reset',{height:'20px', width:'20px'}) }}</a>
+																																																																																																													</div>
+																																																																																																												
+																																																																																																													#}
+	<!-- Tabs content -->
+
+	<div class="border-top border-end border-start p-4">
+		<div class="row g-1 px-4">
+			<div class="col-md-2">
+				<div class="card-inner p-3 d-flex flex-column align-items-center">
+					<img src="https://i.imgur.com/Mb8kaPV.png" width="50">
+					<div class="text-center mg-text">
+						<span class="mg-text">Account</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card-inner p-3 d-flex flex-column align-items-center">
+					<img src="https://i.imgur.com/ueLEPGq.png" width="50">
+					<div class="text-center mg-text">
+						<span class="mg-text">Payments</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card-inner p-3 d-flex flex-column align-items-center">
+					<img src="https://i.imgur.com/tmqv0Eq.png" width="50">
+					<div class="text-center mg-text">
+						<span class="mg-text">Delivery</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card-inner p-3 d-flex flex-column align-items-center">
+					<img src="https://i.imgur.com/D0Sm15i.png" width="50">
+					<div class="text-center mg-text">
+						<span class="mg-text">Product</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card-inner p-3 d-flex flex-column align-items-center">
+					<img src="https://i.imgur.com/Z7BJ8Po.png" width="50">
+					<div class="text-center mg-text">
+						<span class="mg-text">Return</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="card-inner p-3 d-flex flex-column align-items-center">
+					<img src="https://i.imgur.com/YLsQrn3.png" width="50">
+					<div class="text-center mg-text">
+						<span class="mg-text">Guarantee</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex flex-row mt-1 justify-content-between flex-wrap ">
+		{% for trick in tricks %}
+			<div class="cardcontainer mb-3">
+				<div class="photo">
+
+					<img src="{{ vich_uploader_asset(trick, 'imageFile') }}" alt="{{ trick.imageName }}" width="500px"/></span>
+				<div style="background-color:{{ trick.categorie.color }} !important; " class="photos">{{trick.categorie.name}}</div>
+			</div>
+			<div class="content">
+
+				<p class="txt5 mt-1">{{ trick.title|slice(0, 50)  }}</p>
+
+				<br>
+				<p class="txt2">Moyenne de l'astuce :
+
+					{% if trick.average is null %}
+						Pas de note
+					{% else %}
+						<strong>{{trick.average }}/5</strong>
+					{% endif %}
+
+				</p>
+			</div>
+			<div class="footer">
+				<p>
+					<a class="waves-effect waves-light btn-primary btn" href="{{ path('main.show.trick',{id: trick.id, slug: trick.slug}) }}">Voir l'astuce</a>
+
+
+					<a id="heart">
+						<span class="like-trick-home">{{ ux_icon('solar:chat-round-like-bold') }}</span>
+					</a>
+				</p>
+				<div class="txt3">
+					<p>
+						{{ ux_icon('tabler:clock',{height:'15px', width:'15px'}) }}
+						{{ date_ago.timeAgo(trick.createdAt()) }}
+					</p>
+					<p>
+						<span class="">
+
+							{{ ux_icon('fa-regular:comments',{height:'15px', width:'15px'}) }}</span>
+						<span>
+							{{ trick.comments|length }}
+						</span>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	{% endfor %}
+
+
+</div>
+
+
+{#
+																																																																																																																																																																																																																																																																																			<table class="table table-hover">
+																																																																																																																																																																																																																																																																																				<thead>
+																																																																																																																																																																																																																																																																																					<tr class="table-secondary">
+																																																																																																																																																																																																																																																																																						<th scope="col">Voir l'image</th>
+																																																												<p>{{ ux_icon('uil:clock', {height:'15px', width:'15px'}) }}10 Minutes Ago</p>
+																																																												
+																																																							<p class="comments">{{ ux_icon('fa-regular:comments') }}45 Comments</p>																																																																																																																																																																																																																													<th scope="col">Titre</th>
+																																																																																																																																																																																																																																																																																						<th scope="col">Contenu de l'astuce</th>
+																																																																																																																																																																																																																																																																																						<th scope="col">Date de création</th>
+																																																																																																																																																																																																																																																																																					</tr>
+																																																																																																																																																																																																																																																																																				</thead>
+																																																																																																																																																																																																																																																																																		
+																																																																																																																																																																																																																																																																																		
+																																																																																																																																																																																																																																																																																				<tbody>
+																																																																																																																																																																																																																																																																																		
+																																																																																																																																																																																																																																																																																					{% for trick in tricks %}
+																																																																																																																																																																																																																																																																																						<tr class="table-light">
+																																																																																																																																																																																																																																																																																							<th scope="row">{{ trick.id }}
+																																																																																																																																																																																																																																																																																							</th>
+																																																																																																																																																																																																																																																																																							<td>{{ trick.title }}</td>
+																																																																																																																																																																																																																																																																																							<td>{{ trick.content }}</td>
+																																																																																																																																																																																																																																																																																							<td>{{ trick.createdAt|date("d/m/Y") }}</td>
+																																																																																																																																																																																																																																																																																						</tr>
+																																																																																																																																																																																																																																																																																					{% endfor %}
+																																																																																																																																																																																																																																																																																				</tbody>
+																																																																																																																																																																																																																																																																																			</table>
+																																																																																																																																																																																																																																																																																		#}{#	{% endif %} #}
+{#
+																																																																																																																																									
+																																																																																																																																										<ul class="nav nav-pills mb-3 mt-4" id="pills-tab" role="tablist">
+																																																																																																																																											{% for categorie in categories %}
+																																																																																																																																												<li class="nav-item  bg-primary" role="presentation">
+																																																																																																																																													<button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#{{categorie.id}}" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{{ categorie.name }}</button>
+																																																																																																																																												</li>
+																																																																																																																																									
+																																																																																																																																									
+																																																																																																																																											</ul>
+																																																																																																																																											<div class="tab-content" id="pills-tabContent">
+																																																																																																																																												{% for trick in categorie.tricks %}
+																																																																																																																																													<div class="tab-pane fade show active" id="{{categorie.id}}" role="tabpanel" aria-labelledby="pills-home-tab">{{ trick.title }}</div>
+																																																																																																																																												{% endfor %}
+																																																																																																																																											</div>
+																																																																																																																																									
+																																																																																																																																										{% endfor %}
+																																																																																																																																									
+																																																																																																																																									
+																																																																																																																																										<ul class="nav nav-tabs" role="tablist">
+																																																																																																																																											{% for categorie in categories %}
+																																																																																																																																												<li class="nav-item" role="presentation">
+																																																																																																																																													<a class="nav-link" id="simple-tab-{{categorie.id -1 }}" data-bs-toggle="tab" href="#simple-tabpanel-{{categorie.id -1 }}" role="tab" aria-controls="simple-tabpanel-{{categorie.id -1 }}" aria-selected="true">{{categorie.name}}</a>
+																																																																																																																																												</li>
+																																																																																																																																									
+																																																																																																																																									
+																																																																																																																																											</ul>
+																																																																																																																																											<div class="tab-content pt-5" id="tab-content">
+																																																																																																																																												{% for trick in categorie.tricks %}
+																																																																																																																																													<div class="tab-pane fade show active" id="simple-tabpanel-{{ categorie.id -1  }}" role="tabpanel" aria-labelledby="simple-tab-{{ categorie.id -1  }}">{{ trick.title }}</div>
+																																																																																																																																												{% endfor %}
+																																																																																																																																											</div>
+																																																																																																																																									
+																																																																																																																																										{% endfor %}
+																																																																																																																																									
+																																																																																																																																									
+																																																																																																																																									
+																																																																																																																																									
+																																																																																																																																									#}
+{#
+																																																																																																																		
+																																																																																																																				<ul class="nav nav-fill  mt-4 nav-tabs" role="tablist" id="lien_tab"> {% for categorie in categories %}
+																																																																																																																					<li class="nav-item" role="presentation">
+																																																																																																																						<a class="nav-link active" id="fill-tab-{{ categorie.id -1  }}" data-bs-toggle="tab" href="#fill-tabpanel-{{ categorie.id -1  }}" role="tab" aria-controls="fill-tabpanel-{{ categorie.id -1  }}" aria-selected="true">
+																																																																																																																							<h2>
+																																																																																																																								{{ categorie.name }}</h2>
+																																																																																																																						</a>
+																																																																																																																					</li>
+																																																																																																																		
+																																																																																																																				</ul>
+																																																																																																																				{% for trick in categorie.tricks %}
+																																																																																																																					<div class="tab-content pt-5" id="tab-content">
+																																																																																																																						<div class="tab-pane active" id="fill-tabpanel-{{ categorie.name }}" role="tabpanel" aria-labelledby="fill-tab-{{ categorie.name }}">
+																																																																																																																							{{ trick.title }}</div>
+																																																																																																																		
+																																																																																																																					</div>
+																																																																																																																				{% endfor %}
+																																																																																																																			{% endfor %}
+																																																																																																																		
+																																																																																																																		
+																																																																																																																		
+																																																																																																																		
+																																																																																																																		
+																																																																																																																			<ul class="nav nav-tabs nav-justified" role="tablist">
+																																																																																																																				<li class="nav-item" role="presentation">
+																																																																																																																					<a class="nav-link active" id="justified-tab-0" data-bs-toggle="tab" href="#justified-tabpanel-0" role="tab" aria-controls="justified-tabpanel-0" aria-selected="true">
+																																																																																																																						Tab 1
+																																																																																																																					</a>
+																																																																																																																				</li>
+																																																																																																																				<li class="nav-item" role="presentation">
+																																																																																																																					<a class="nav-link" id="justified-tab-1" data-bs-toggle="tab" href="#justified-tabpanel-1" role="tab" aria-controls="justified-tabpanel-1" aria-selected="false">
+																																																																																																																						Much longer nav link
+																																																																																																																					</a>
+																																																																																																																				</li>
+																																																																																																																				<li class="nav-item" role="presentation">
+																																																																																																																					<a class="nav-link" id="justified-tab-2" data-bs-toggle="tab" href="#justified-tabpanel-2" role="tab" aria-controls="justified-tabpanel-2" aria-selected="false">
+																																																																																																																						Tab 3
+																																																																																																																					</a>
+																																																																																																																				</li>
+																																																																																																																			</ul>
+																																																																																																																			<div class="tab-content pt-5" id="tab-content">
+																																																																																																																				<div class="tab-pane active" id="justified-tabpanel-0" role="tabpanel" aria-labelledby="justified-tab-0">Tab 1 selected</div>
+																																																																																																																				<div class="tab-pane" id="justified-tabpanel-1" role="tabpanel" aria-labelledby="justified-tab-1">Tab 'Much longer nav link' selected</div>
+																																																																																																																				<div class="tab-pane" id="justified-tabpanel-2" role="tabpanel" aria-labelledby="justified-tab-2">Tab 3 selected</div>
+																																																																																																																			</div>
+																																																																																																																		
+																																																																																																																	#}
+
+{#	<div class="mt-4"> {{ form(formTrcikByCategorie) }}</div>#}{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	titre de l'astuce :
+	{{ trick.title }}
+{% endblock %}
+
+
+{% block importmap %}
+	{{ importmap(['app', 'add-trick']) }}
+{% endblock %}
+
+{% block body %}
+
+
+	<h2 class="mt-2">{{ trick.title }}</h2>
+	<hr>
+	<div class="wrap_show_admin">
+		<div class="wrap_admin_show_img">
+
+			<img src="{{ vich_uploader_asset(trick, 'imageFile') }}" alt="{{ trick.imageName }}" width="500px"/></span>
+	</div>
+	<div>
+		<ul>
+			<li>
+				l'auteur :
+				{{ trick.user.username }}</li>
+			<li>La catégorie :
+				{{ trick.categorie.name  }}</li>
+			<li>Date de création :
+				{{ trick.createdAt|date("d/m/Y") }}</li>
+			<li>
+				La moyenne de l'astuce :
+				{% if trick.average is null %}
+					<strong>
+						Pas de note</strong>
+				{% else %}
+					<strong>{{trick.average }}/5</strong>
+				{% endif %}
+
+			</li>
+		</ul>
+
+	</div>
+</div>
+
+<div>{{ trick.content|nl2br }}</div>{% endblock %}

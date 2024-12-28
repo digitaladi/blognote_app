@@ -1,0 +1,34 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Affichage d'une notation
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="list-group">
+		<a href="#" class="list-group-item list-group-item-action active">
+			<h4>
+				Informations sur la notation</h4>
+		</a>
+
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Note
+			<span class="badge bg-primary rounded-pill">{{ rating.note }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			L'astuce de la notation
+			<span class="badge bg-primary rounded-pill">{{ rating.trick.title }}</span>
+		</li>
+
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			L'auteur de la notation
+			<span class="badge bg-primary rounded-pill">{{ rating.user.username }}</span>
+		</li>
+
+
+	</div>
+
+
+{% endblock %}

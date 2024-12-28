@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'utilisateur
+{% endblock %}
+
+{% block body %}
+
+
+	<h1 class="mt-2 fw-light">Modification de l'utilisateur</h1>
+
+	{{ form_start(userFormAdmin) }}
+
+
+	<div class="form-group">
+		{{ form_label(userFormAdmin.username) }}
+		{{ form_widget(userFormAdmin.username) }}
+		<div class="form-error">
+			{{ form_errors(userFormAdmin.username) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(userFormAdmin.email) }}
+		{{ form_widget(userFormAdmin.email) }}
+		<div class="form-error">
+			{{ form_errors(userFormAdmin.email) }}
+		</div>
+	</div>
+
+	<div class="form-group form-image-edit-user">
+
+		{{ form_label(userFormAdmin.imageFile) }}
+		{{ form_widget(userFormAdmin.imageFile) }}
+		<div class="form-error">
+			{{ form_errors(userFormAdmin.imageFile) }}
+		</div>
+	</div>
+
+	{{ form_end(userFormAdmin ) }}
+
+
+{% endblock %}

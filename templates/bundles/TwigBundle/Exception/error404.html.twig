@@ -1,0 +1,101 @@
+{% block title %}{% endblock %}
+
+
+<style>
+	/*
+		body {
+			background-color: gray;
+		}
+
+		*/
+
+	.container {
+		/*background-color: gray;*/
+		display: flex;
+		flex-direction: column;
+		padding-top: 5vh;
+		height: 90vh;
+		margin: 0 10%;
+		font-family: sans serif;
+	}
+
+
+	.wrap_text_img {
+		display: flex;
+		flex-direction: row;
+		margin: auto;
+	}
+
+	.wrap_text h1 {
+		font-size: 20em;
+		margin-bottom: 4%;
+		margin-top: 1%;
+		margin-bottom: 0;
+		/** Text Gradient Example */
+
+		color: #33b7e2;
+		background-image: linear-gradient(45deg, #33b7e2 0%, #5e62b0 45%, #dc307c 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+
+	}
+
+	.wrap_text h2 {
+		font-size: 1.5em;
+		margin-bottom: 6%;
+		margin-top: 0;
+		color: #33b7e2;
+		background-image: linear-gradient(45deg, #33b7e2 0%, #5e62b0 45%, #dc307c 100%);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+
+	}
+
+
+	.link_exception {
+		/*	border: 1px solid #e83283;*/
+		width: max-content;
+		padding: 2%;
+		/* border-radius: 30px; */
+		text-decoration: none;
+		background-image: linear-gradient(45deg, #33b7e2 0%, #5e62b0 45%, #dc307c 100%);
+		color: white;
+	}
+
+	.link_exception:hover {
+		border: 1px solid #e83283;
+		background-image: none;
+		color: #e83283;
+	}
+
+</style>
+
+
+{% block body %}
+
+
+	<div class="container">
+
+		<div class="wrap_text_img">
+			<div class="wrap_text">
+
+				<h1 class="">
+					404</h1>
+
+				<h2>
+					Désolé, la page que vous cherchez est introuvable !
+				</h2>
+				<a href="{{ path('app_home') }}" class="link_exception">
+					Retour à la page d'accueil</a>
+			</div>
+
+
+			<div><img src="{{ asset('images/babie_cry.png') }}" alt="baby cry!" width="400px"/></div>
+
+		</div>
+
+
+	</div>
+{% endblock %}

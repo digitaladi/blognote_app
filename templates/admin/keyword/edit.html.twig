@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un mot clé
+{% endblock %}
+
+{% block body %}
+
+
+	<h1 class="mt-4">Modifier un mot clé</h1>
+
+
+	{{ form_start(keywordEditAdminForm) }}
+
+	<div class="form-group">
+		{{ form_label(keywordEditAdminForm.name) }}
+		{{ form_widget(keywordEditAdminForm.name) }}
+
+		<div class="form-error">
+			{{ form_errors(keywordEditAdminForm.name) }}
+		</div>
+	</div>
+
+	{{ form_end(keywordEditAdminForm) }}
+
+
+{% endblock %}

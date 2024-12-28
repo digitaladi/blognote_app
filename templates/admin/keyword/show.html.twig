@@ -1,0 +1,40 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot clé : Santé et Bien être
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="list-group">
+		<a href="#" class="list-group-item list-group-item-action active">
+			<h4>
+				Information sur les mot clés</h4>
+		</a>
+
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Le nom du mot clé
+			<span class="badge bg-primary rounded-pill">{{ keyword.name }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between align-items-center">
+			Le slug du mot clé
+			<span class="badge bg-primary rounded-pill">{{ keyword.slug }}</span>
+		</li>
+
+
+		{#
+																										<ul class="list-group mt-2">
+																											<li class="list-group-item d-flex justify-content-between align-items-center">
+																												Nombres d'astuces
+																												<span class="badge bg-primary rounded-pill">{{ categorie.getTricks|length  }}</span>
+																											</li>
+																											<li class="list-group-item d-flex justify-content-between align-items-center">
+																												Nombre de categories
+																												<span class="badge bg-primary rounded-pill">{{ categorie.getCategories|length  }}</span>
+																											</li>
+																								
+																										</ul>
+																								        #}
+	</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une notation
+{% endblock %}
+
+{% block body %}
+
+
+	<h1 class="mt-4">Modifier la notation</h1>
+
+
+	{{ form_start(ratingEditAdminForm) }}
+
+
+	<div class="form-group">
+		{{ form_label(ratingEditAdminForm.note) }}
+		{{ form_widget(ratingEditAdminForm.note) }}
+
+		<div class="form-error">
+			{{ form_errors(ratingEditAdminForm.note) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+		{{ form_label(ratingEditAdminForm.trick) }}
+		{{ form_widget(ratingEditAdminForm.trick) }}
+
+		<div class="form-error">
+			{{ form_errors(ratingEditAdminForm.trick) }}
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{{ form_label(ratingEditAdminForm.user) }}
+		{{ form_widget(ratingEditAdminForm.user) }}
+
+		<div class="form-error">
+			{{ form_errors(ratingEditAdminForm.user) }}
+		</div>
+	</div>
+
+	{{ form_end(ratingEditAdminForm) }}
+
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{# cette page étend le twig base.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de mon profil
+{% endblock %}
+
+{% block body %}
+
+
+	<ul class="nav nav-tabs" role="tablist">
+		<li class="nav-item" role="presentation">
+			<a class="nav-link  active" data-bs-toggle="tab" href="#home" aria-selected="false" role="tab" tabindex="-1">Details</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#profile" aria-selected="true" role="tab">Editer mon profil</a>
+		</li>
+		<li class="nav-item" role="presentation">
+			<a class="nav-link" data-bs-toggle="tab" href="#dropdown1" aria-selected="true" role="tab">Changer mon mot de passe</a>
+		</li>
+
+	</ul>
+	<div id="myTabContent" class="tab-content">
+		<div class="tab-pane  mt-3 fade  active show" id="home" role="tabpanel">
+			<div class="container mt-5">
+
+				<div class="row d-flex justify-content-center">
+
+					<div class="col-md-7">
+
+						<div class="card p-3 py-4">
+
+							<div class="text-center">
+
+								<img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" width="100px" height="100px" class="rounded-circle">
+							</div>
+
+							<div class="text-center mt-3">
+								<span class="bg-secondary p-1 px-4 rounded text-white">Inscris depuis
+									{{app.user.createdAt|date("m/d/Y")}}</span>
+								<h5 class="mt-2 mb-0">{{app.user.username}}</h5>
+								<span>{{app.user.email}}</span>
+
+								<div class="px-4 mt-1"></div>
+
+								<ul class="social-list">
+									<li>
+										<a href="">{{ ux_icon('ic:baseline-facebook', {height:'30px', width:'30px'}) }}</a>
+									</li>
+
+
+									<li>
+										<a href="">{{ ux_icon('mingcute:dribbble-fill', {height:'30px', width:'30px'}) }}</a>
+									</li>
+
+									<li>
+										<a href="">{{ ux_icon('ri:instagram-fill', {height:'30px', width:'30px'}) }}</a>
+									</li>
+
+									<li>
+										<a href="">{{ ux_icon('mdi:linkedin', {height:'30px', width:'30px'}) }}</a>
+									</li>
+
+
+									<li>
+										<a href="">{{ ux_icon('ri:google-fill', {height:'30px', width:'30px'}) }}</a>
+									</li>
+
+
+								</ul>
+
+								<div class="buttons">
+
+									<button class="btn btn-outline-primary px-4">Message</button>
+									<button class="btn btn-primary px-4 ms-3">Contact</button>
+								</div>
+
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<div class="tab-pane mt-3 fade" id="profile" role="tabpanel">
+			<div>
+				{{ form_errors(formeditUser) }}
+			</div>
+			{{ form_start(formeditUser) }}
+
+
+			<div class="form-group">
+				{{ form_row(formeditUser.email)}}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(formeditUser.username) }}
+			</div>
+
+			<div class="form-group form-image-edit-user">
+				{{ form_row(formeditUser.imageFile) }}
+			</div>
+
+
+			{#
+																																																																																																																														<div class="form-group">
+																																																																																																																															{{ form_row(registrationForm.agreeTerms) }}
+																																																																																																																														</div>
+																																																																																																																											#}
+			{#<button type="submit" class="btn" id="submit-button" disabled>M'inscrire</button>#}
+			{{ form_end(formeditUser) }}
+		</div>
+		<div class="tab-pane mt-3 fade" id="dropdown1">
+			<div>
+				{{ form_errors(formEditUserPassword) }}
+			</div>
+			{{ form_start(formEditUserPassword) }}
+
+
+			<div class="form-group">
+				{{ form_row(formEditUserPassword.password)}}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(formEditUserPassword.newpassword)}}
+			</div>
+
+
+			{#
+																																																																																																																														<div class="form-group">
+																																																																																																																															{{ form_row(registrationForm.agreeTerms) }}
+																																																																																																																														</div>
+																																																																																																																											#}
+			{#<button type="submit" class="btn" id="submit-button" disabled>M'inscrire</button>#}
+			{{ form_end(formEditUserPassword) }}
+		</div>
+
+	</div>
+
+
+	{#	{% endif %} #}
+
+
+{% endblock %}

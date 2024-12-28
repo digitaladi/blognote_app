@@ -1,0 +1,11 @@
+<h1>Activation de votre compte sur blognote</h1>
+<p>Bonjour
+	{{ user.username }},</p>
+<p>Pour activer votre compte sur blognote cliquez sur le lien ci-dessous</p>
+<p>
+	<!-- absolute_url permet d'afficher l'url complet -->
+	<a href="{{ absolute_url(path('verify_user',{token:token})) }}">Lien</a>
+</p>
+
+<p>{{token}}</p>
+<p>Merci</p>

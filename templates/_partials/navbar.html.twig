@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+	<div class="container">
+		<a class="navbar-brand" href="{{ path('app_home') }}">
+			<strong>Blog</strong>Note</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul
+				class="navbar-nav m-auto">
+				{#  #}
+				<li class="nav-item">
+					<a class="nav-link active" href="{{ path('app_apropos') }}">A propos
+						<span class="visually-hidden">(current)</span>
+					</a>
+				</li>
+				{% if app.user %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_profil_trick_index') }}">Mes astuces</a>
+					</li>
+				{% endif %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('trickday') }}">Astuce du jour</a>
+				</li>
+
+
+			</ul>
+
+
+			<div class="account-right-wrapper bg-primary">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+
+
+							{# comment utiliser ux symfony icon #}
+							{# tabler => le prefix #}
+							{# user-circle: le nom de l'icone #}
+							{# user-circle: le nom de l'icone #}
+							{# {height:'30px', width:'30px'} :  la taille de l'icone #}
+							{#{{ ux_icon('tabler:user-circle', {height:'30px', width:'30px'}) }}#}
+								{% if app.user %}
+								{{ app.user.username }}
+
+								<img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="avatar" class="img rounded-circle ms-1" width="35" height="35"> {{ ux_icon('dashicons:arrow-down', {height:'20px', width:'20px'}) }}
+
+							{% else %}
+								{{ ux_icon('tabler:user-circle', {height:'30px', width:'30px'}) }}
+								{{ ux_icon('dashicons:arrow-down', {height:'20px', width:'20px'}) }}
+							{% endif %}
+						</a>
+
+						<div class="dropdown-menu">
+							{% if not app.user %}
+								<a class="dropdown-item" href="{{ path('app_register') }}">S'inscrire</a>
+								<a class="dropdown-item" href="{{ path('app_login') }}">Se connecter</a>
+
+							{% endif %}
+
+							{% if is_granted('ROLE_USER')  %}
+								<a class="dropdown-item" href="{{ path('app_profile_main_index') }}">Mon compte</a>
+							{% endif %}
+
+							{% if is_granted('ROLE_ADMIN')  %}
+								<a class="dropdown-item" href="{{ path('app_admin') }}">Administration</a>
+							{% endif %}
+							{% if app.user %}
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a>
+							{% endif %}
+						</div>
+					</li>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</div></nav>

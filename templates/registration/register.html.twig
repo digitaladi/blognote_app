@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{# il va aller chercher dans le fichier importmap.php et va trouver le entrypoint app puis va charger le fichier js correspondant  #}
+{% block importmap %}
+
+	{{ importmap(['app']) }}
+{% endblock %}
+
+
+{% block body %}
+
+
+	<h1 class="mt-4 fw-light">S'enregistrer</h1>
+	<div>
+		{{ form_errors(registrationForm) }}
+	</div>
+	{{ form_start(registrationForm) }}
+
+
+	<div class="form-group">
+		{{ form_row(registrationForm.email)}}
+	</div>
+
+	<div class="form-group">
+		{{ form_row(registrationForm.username) }}
+	</div>
+
+	<div class="form-group">
+		{{ form_row(registrationForm.password) }}
+
+		{#
+																																<div>
+																																	<p>Compléxité du mot de passe  :
+																																		<span id="entropy" class="text-red">
+																																			Très faible
+																																		</span>
+																																		(La compléxité minimale acceptée est "fort")</p>
+																																</div>
+																													#}
+	</div>
+
+	<div class="form-group">
+		{{ form_row(registrationForm.imageFile) }}
+	</div>
+	<div class="form-group">
+		{{ form_row(registrationForm.agreeTerms) }}
+	</div>
+
+	{#<button type="submit" class="btn" id="submit-button" disabled>M'inscrire</button>#}
+	{{ form_end(registrationForm) }}
+
+	<br>
+	<p>Déja inscrit (e) ?
+		<a href="{{ path('app_login') }}">Me connecter</a>
+	</p>
+
+
+{% endblock %}

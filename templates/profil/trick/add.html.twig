@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ajout d'astuce
+{% endblock %}
+
+
+{% block importmap %}
+	{{ importmap(['app', 'app']) }}
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="mt-4 fw-light">Création d'un astuce</h1>
+
+	{{ form_start(trickForm) }}
+
+
+	<div class="form-group">
+		{{ form_label(trickForm.title) }}
+		{{ form_widget(trickForm.title) }}
+
+		<div class="form-error">
+			{{ form_errors(trickForm.title) }}
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{{ form_label(trickForm.content) }}
+		{{ form_widget(trickForm.content) }}
+		<div class="form-error">
+			{{ form_errors(trickForm.content) }}
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{{ form_label(trickForm.imageFile) }}
+		{{ form_widget(trickForm.imageFile) }}
+		<div class="form-error">
+			{{ form_errors(trickForm.imageFile) }}
+		</div>
+
+	</div>
+	<div class="form-group">
+
+		{{ form_label(trickForm.public) }}
+		{{ form_widget(trickForm.public) }}
+		<div class="form-error">
+			{{ form_errors(trickForm.public) }}
+		</div>
+	</div>
+
+	<div class="form-group">
+
+		{{ form_label(trickForm.categorie) }}
+		{{ form_widget(trickForm.categorie) }}
+		<div class="form-error">
+			{{ form_errors(trickForm.categorie) }}
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{{ form_label(trickForm.keyword) }}
+		{{ form_widget(trickForm.keyword) }}
+		<div class="form-error">
+			{{ form_errors(trickForm.keyword) }}
+
+		</div>
+	</div>
+
+	{{ form_end(trickForm) }}
+
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un commentaire
+{% endblock %}
+
+{% block body %}
+
+
+	<h1 class="mt-2">Modifier un commentaire</h1>
+
+
+	{{ form_start(commentAdminForm) }}
+
+
+	<div class="form-group">
+		{{ form_label(commentAdminForm.content) }}
+		{{ form_widget(commentAdminForm.content) }}
+
+		<div class="form-error">
+			{{ form_errors(commentAdminForm.content) }}
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{{ form_label(commentAdminForm.isReply) }}
+		{{ form_widget(commentAdminForm.isReply) }}
+
+		<div class="form-error">
+			{{ form_errors(commentAdminForm.isReply) }}
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{{ form_label(commentAdminForm.user) }}
+		{{ form_widget(commentAdminForm.user) }}
+
+		<div class="form-error">
+			{{ form_errors(commentAdminForm.user) }}
+		</div>
+	</div>
+
+
+	<div class="form-group">
+		{{ form_label(commentAdminForm.trick) }}
+		{{ form_widget(commentAdminForm.trick) }}
+
+		<div class="form-error">
+			{{ form_errors(commentAdminForm.trick) }}
+		</div>
+	</div>
+
+	{{ form_end(commentAdminForm) }}
+
+
+{% endblock %}

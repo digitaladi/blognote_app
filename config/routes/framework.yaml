@@ -1,0 +1,6 @@
+when@dev:
+    _errors:
+        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
+        prefix:   /_error
+
+# voila le chemin pour voir l'erreur quand on est en mode dev sur une erreur 404 : http://localhost:8000/_error/404
