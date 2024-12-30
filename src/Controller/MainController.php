@@ -208,18 +208,19 @@ public function show(Trick $trick,RatingRepository $ratingRepository, $slug, Ent
     $comment->setUser($this->getUser());
     $comment->setIsReply(false);
 
-    //on récupère le contenu du champ parent_id
+    //on récupère le contenu du champ parent_id du formulaire
     $parentCommentId = $formComment->get("parent_id")->getData();
-   dd($parentCommentId);
-    if(!$parentCommentId){
+
+    
+ 
  
 
-    //on récupère le parent du commentaire
-    $parent = $em->getRepository(Comment::class)->find($parentCommentId);
-
+    //on récupère le parent du commentaire correspondant
+    $parent = $em->getRepository(Comment::class)->find((int)$parentCommentId);
+    //dd($parent);
     //on définit le parent du commentaire
     $comment->setComment($parent);
-    }
+
 
 
    //dd($trick);

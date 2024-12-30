@@ -33,7 +33,8 @@ class FormProfilCommentType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Poster le commentaire',
                 'attr' => [
-                    'class' => 'btn btn-primary mt-2 float-end mb-2'
+                    'class' => 'btn btn-primary mt-2 float-end mb-2',
+                    'data-turbo' => 'false'
                 ]
             ])
             //form_profil_comment_comment_id
@@ -78,6 +79,7 @@ class FormProfilCommentType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Comment::class,
+            
         ]);
     }
 }

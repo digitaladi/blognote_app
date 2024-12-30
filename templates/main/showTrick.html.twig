@@ -12,162 +12,218 @@
 	<hr>
 	<div class="wrap_show_admin">
 		<div class="wrap_admin_show_img">
-			<img src="{{ vich_uploader_asset(trick, 'imageFile') }}" alt="{{ trick.imageName }}" width="500px"/></span>
+			<img src="{{ vich_uploader_asset(trick, 'imageFile') }}" alt="{{ trick.imageName }}" width="500px"/>
+		</div>
+
+		<div>
+			<ul>
+				<li>
+					l'auteur :
+					{{ trick.user.username }}</li>
+				<li>La catégorie :
+					{{ trick.categorie.name  }}</li>
+				<li>Date de création :
+					{{ trick.createdAt|date("d/m/Y") }}</li>
+				<li>
+
+					La moyenne de l'astuce :
+					{% if trick.average is null %}
+						<strong>
+							Pas de note</strong>
+					{% else %}
+						<strong>{{trick.average}}/5</strong>
+					{% endif %}
+
+
+				</li>
+
+
+			</ul>
+
+			<!-- Button trigger modal -->
+
+			{#{% if (app.user is not null or trick.user != app.user) or (app.user is not null) %}#}
+			{% if ((trick.user != app.user and app.user is not null )) %}
+				<button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					Noter l'astuce
+				</button>
+
+
+			{% endif %}
+
+
+		</div>
 	</div>
-	<div>
-		<ul>
-			<li>
-				l'auteur :
-				{{ trick.user.username }}</li>
-			<li>La catégorie :
-				{{ trick.categorie.name  }}</li>
-			<li>Date de création :
-				{{ trick.createdAt|date("d/m/Y") }}</li>
-			<li>
-
-				La moyenne de l'astuce :
-				{% if trick.average is null %}
-					<strong>
-						Pas de note</strong>
-				{% else %}
-					<strong>{{trick.average}}/5</strong>
-				{% endif %}
+	{#  nl2br : permet de prendre en compte les saut de lignes #}
+	<div class="mb-4">{{ trick.content|nl2br  }}</div>
 
 
-			</li>
+	<hr>
 
 
-		</ul>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">
+						Noter l'astuce</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					{{ form_start(formRating) }}
+					<div class="form-group">
+						{{   form_label(formRating.note ) }}
+						{{   form_widget(formRating.note) }}
+						<div class="form-error">
+							{{ form_errors(formRating.note) }}
 
-		<!-- Button trigger modal -->
-
-		{#{% if (app.user is not null or trick.user != app.user) or (app.user is not null) %}#}
-		{% if ((trick.user != app.user and app.user is not null )) %}
-			<button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-				Noter l'astuce
-			</button>
-
-
-		{% endif %}
-
-
-	</div>
-</div>
-{#  nl2br : permet de prendre en compte les saut de lignes #}
-<div class="mb-4">{{ trick.content|nl2br  }}</div>
-
-
-<hr>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">
-					Noter l'astuce</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				{{ form_start(formRating) }}
-				<div class="form-group">
-					{{   form_label(formRating.note ) }}
-					{{   form_widget(formRating.note) }}
-					<div class="form-error">
-						{{ form_errors(formRating.note) }}
-
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">fermer</button>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">fermer</button>
 
-				{{   form_label(formRating.submit ) }}
-				{{   form_widget(formRating.submit) }}
+					{{   form_label(formRating.submit ) }}
+					{{   form_widget(formRating.submit) }}
 
-				{{ form_end(formRating) }}
+					{{ form_end(formRating) }}
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 
-{#	{{   form(formRating ) }}#}
+	{#	{{   form(formRating ) }}#}
 
 
-<div class=" mt-4 row d-flex">
-	<div class="col-md-12 col-lg-10 col-xl-8">
-		<p>
-			{{ comments|length }}
-			commentaires</p>
-		<div class="card">
+	<div class=" mt-4 row d-flex">
+		<div class="col-md-12 col-lg-10 col-xl-8">
 
-			{% for comment in comments %}
-				<div class="card-body ">
-					<div class="d-flex flex-start align-items-center ">
+			<p>
+				{{ comments|length }}
+				commentaires
+			</p>
 
-						<img src="{{ vich_uploader_asset(comment.user, 'imageFile') }}" alt="avatar" class="rounded-circle shadow-1-strong me-3" width="40" height="40">
-						<div>
-							<h6 class="fw-bold text-primary mb-1">{{ comment.user.username }}</h6>
-							<p class="text-muted small mb-0">
-								Le
-								{{ comment.createAt|date("d/m/Y") }}
-							</p>
-						</div>
-					</div>
-
-					<div class="mt-3 mb-4 pb-2 border-bottom">
-						<p>{{ comment.content|nl2br }}</p>
-						<p class="text-end mb-0 text-primary">
-							<a class="text-primary" href="#add-comment" data-reply data-id="{{ comment.id }}">Répondre</a>
-							{{ ux_icon('ri:reply-fill', {height:'20px', width:'20px'}) }}</p>
-					</div>
-
-
-				</div>
-
-
-			{% endfor %}
 
 			{% if app.user %}
 
 
-				<div class="card-footer py-3 border-0" id="add-comment">
-					<div class="d-flex flex-start w-100">
+				<div class="card-footer py-3 border-0 mb-4" id="add-comment">
+					<div class="d-flex flex-start w-100 mb-4">
 
 						<img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="avatar" class="rounded-circle shadow-1-strong me-3" width="40" height="40">
 
 						<div data-mdb-input-init class="form-outline w-100">
 							<div id="wrap-form-comment">
 								{{ form(formComment) }}
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				{% else %}
+					<div class="card-footer py-3 border-0">
+						<div class="d-flex flex-start w-100">
+
+
+							<div data-mdb-input-init class="form-outline w-100">
+								<div>
+									<p class="connect_pour_commenter float-end  btn btn-primary m-2 mb-4">
+										<a href="{{ path('app_login') }}">Connectez-vous pour commenter</a>
+									</p>
 								</div>
 							</div>
 						</div>
 
 					</div>
-				</div>
-
-			{% else %}
-				<div class="card-footer py-3 border-0">
-					<div class="d-flex flex-start w-100">
+				{% endif %}
 
 
-						<div data-mdb-input-init class="form-outline w-100">
-							<div>
-								<p class="connect_pour_commenter float-end  btn btn-primary m-2 mb-4">
-									<a href="{{ path('app_login') }}">Connectez-vous pour commenter</a>
-								</p>
+				{% for comment in comments %}
+
+
+					{% if comment.comment is null %}
+						<div class="card  mb-4">
+							<div class="card-body">
+								<div class="first-comment">
+									<div class="d-flex flex-start align-items-center ">
+
+										<img src="{{ vich_uploader_asset(comment.user, 'imageFile') }}" alt="avatar" class="rounded-circle shadow-1-strong me-3" width="40" height="40">
+										<div>
+											<h6 class="fw-bold text-primary mb-1">{{ comment.user.username }}</h6>
+											<p class="text-muted small mb-0">
+												Pubié le
+												{{ comment.createAt|date("d/m/Y H:i") }}
+											</p>
+										</div>
+									</div>
+
+									<div class="mt-3 mb-4 pb-2 border-bottom ">
+										<p>{{ comment.content|nl2br }}</p>
+										<p class="text-end mb-0 text-primary">
+											{{ ux_icon('material-symbols-light:flag', {height:'20px', width:'20px'}) }}
+											<a class="text-primary me-2" href="#signal">Signaler</a>
+
+											{# data-turbo="false" permet de désactiver le comportemnt de turbo los d'un evenement  #}
+											<a class="text-primary" href="#add-comment" data-turbo="false" data-reply data-id="{{ comment.id }}">Répondre</a>
+											{{ ux_icon('ri:reply-fill', {height:'20px', width:'20px'}) }}</p>
+									</div>
+
+								</div>
+
+
+								{# data-turbo="false" permet de désactiver le comportemnt de turbo los d'un evenement  #}
+
+								{% if comment.comments is not empty %}
+
+									{% for response in comment.comments %}
+
+
+										<div class="first-comment ms-3 ps-3 border-start">
+											<div class="d-flex flex-start align-items-center ">
+
+												<img src="{{ vich_uploader_asset(response.user, 'imageFile') }}" alt="avatar" class="rounded-circle shadow-1-strong me-3" width="40" height="40">
+												<div>
+													<h6 class="fw-bold text-primary mb-1">{{ response.user.username }}</h6>
+													<p class="text-muted small mb-0">
+														Reponse publié	le
+														{{ response.createAt|date("d/m/Y H:i") }}
+													</p>
+												</div>
+											</div>
+
+											<div class="mt-3 mb-4 pb-2 border-bottom">
+												<p>{{ response.content|nl2br }}</p>
+												<p
+													class="text-end mb-0 text-primary">
+													{# data-turbo="false" permet de désactiver le comportemnt de turbo los d'un evenement  #}
+													<a class="text-primary" href="#signal">Signaler</a>
+													{{ ux_icon('ri:reply-fill', {height:'20px', width:'20px'}) }}</p>
+											</div>
+
+										</div>
+									{% endfor %}
+
+								{% endif %}
 							</div>
 						</div>
-					</div>
+					{% endif %}
 
-				</div>
+
+				{% endfor %}
+
+
 			</div>
+		</div>
 
-		{% endif %}
-	</div>
-</div>{% endblock %}{#
-																																		
-																																				<p class="connect_pour_commenter float-end  btn btn-primary m-2 mb-4">Connectez-vous pour commenter</p>
-																																		#}
+
+	{% endblock %}
+
+
+	{#
+																																																																																																										
+																																																																																																												<p class="connect_pour_commenter float-end  btn btn-primary m-2 mb-4">Connectez-vous pour commenter</p>
+																																																																																																										#}
